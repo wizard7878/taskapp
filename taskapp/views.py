@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django.shortcuts import get_object_or_404
@@ -47,12 +47,14 @@ class CreateRateContentViewSet(viewsets.ViewSet):
         if str(_is_my_score_valid(request.data.get('my_score'))):
             if rated :
                 rated.update(score=request.data.get('my_score'))
+                Status = status.HTTP_200_OK
             else:
                 Rate.objects.create(user=request.user, content=content, score=request.data['my_score'])
                 content.number_of_users_rated += 1
+                Status = status.HTTP_201_CREATED
             all_content_score = Rate.objects.filter(content=content).values_list('score', flat=True)
             average = sum(all_content_score) / len(all_content_score)
             content.average_score = average
             content.save()
-            return Response(serializer.data)
+            return Response(serializer.data, status=Status)
 
