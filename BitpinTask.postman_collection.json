@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "5e669b54-b244-4974-a8aa-514af8791104",
+		"name": "Bitpin Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Peyman\",\r\n    \"email\": \"email@email.com\",\r\n    \"password\": \"admin\",\r\n    \"confirm_password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/api/account/signup/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"signup",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Peyman\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/api/account/signin/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"signin",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List Contents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUzMzc1NDg5LCJpYXQiOjE2NTA3ODM0ODksImp0aSI6IjU2NThiMjA0MGVmNDRlN2NiMGUyMWY5YTQ0MGRlNzEwIiwidXNlcl9pZCI6MX0.IeTj1s-dT9PFRMzvJ_pbGS8DoF3ZEXoF2ggrIEkH-2I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/api/taskapp/content",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"api",
+						"taskapp",
+						"content"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Content Rate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUzMzcyMzI0LCJpYXQiOjE2NTA3ODAzMjQsImp0aSI6ImUwMTE4NjEwNzIwMjQ1MTY4MDAxOTk2OTAzNmM2ZGJlIiwidXNlcl9pZCI6OH0.Zh9nYJEtA49PMnot2Ol85KjyWtTUZ2cNGRBh8fkQwq0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"my_score\" : 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/api/taskapp/content/rate/:content_id",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"api",
+						"taskapp",
+						"content",
+						"rate",
+						":content_id"
+					],
+					"variable": [
+						{
+							"key": "content_id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth",
+			"value": "http://127.0.0.1:8000",
+			"type": "default"
+		}
+	]
+}
